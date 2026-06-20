@@ -1,0 +1,125 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Bird
+providerId: bird-com
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- CRM
+- Messaging
+- SMS
+- WhatsApp
+- Email
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Bird (formerly MessageBird) spend. Bird bills a tiered platform
+  subscription (often based on targeted contacts) plus consumption-based
+  per-message charges that vary by channel and country, frequently with carrier
+  or Meta passthrough costs layered on top. The legacy MessageBird REST API bills
+  per-message for SMS, voice, verify, and lookup.
+notes: >-
+  Per-message rates and platform fees vary by country, channel, message type, and
+  contract; passthrough costs are billed in addition to listed rates. Verify
+  against the Bird pricing page during reconciliation.
+sources:
+- https://bird.com/en-us/pricing
+- https://docs.bird.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Bird
+serviceCategory: Communications and Messaging
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Bird
+  ServiceCategory: Communications and Messaging
+  ProviderName: Bird
+  PublisherName: Bird
+  InvoiceIssuerName: Bird
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: platform_subscription
+  description: Tiered platform fee, often based on targeted/active contacts.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: sms_messages
+  description: SMS messages sent/received, billed per message and country.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+  - direction
+- name: whatsapp_messages
+  description: WhatsApp messages billed per message plus Meta passthrough.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+  - category
+- name: email_sends
+  description: Email sends billed per thousand emails.
+  unit: emails
+  aggregation: sum
+  dimensions:
+  - account
+- name: voice_messages
+  description: Voice messages/minutes via legacy MessageBird voice messaging.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+- name: verify_requests
+  description: Verify (OTP) tokens sent via the legacy MessageBird API.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+- name: lookup_requests
+  description: Number lookup / HLR requests.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+- name: numbers_rental
+  description: Recurring rental of provisioned phone numbers.
+  unit: numbers
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+  - numberType
+principles:
+- name: Visibility
+  description: Pull Bird usage exports; inspect per-channel and per-country message burn plus passthrough.
+- name: Allocation
+  description: Tag access keys and channels per workload/team; map to internal cost centers.
+- name: Optimization
+  description: Prefer transactional over promotional message categories where possible; right-size number provisioning; consolidate channels.
+- name: Accountability
+  description: Assign owners per workspace/channel; review message spend and contact-tier fees monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

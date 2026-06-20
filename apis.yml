@@ -1,0 +1,147 @@
+aid: bird-com
+url: https://raw.githubusercontent.com/api-evangelist/bird-com/refs/heads/main/apis.yml
+name: Bird
+kind: company
+description: Bird (formerly MessageBird) is an omnichannel CRM for marketing, service,
+  and payments. Its REST APIs at https://api.bird.com let businesses send and receive
+  messages across SMS, WhatsApp, email, and voice through a unified Channels and
+  Conversations interface, manage contacts and phone numbers, and migrate from the
+  legacy MessageBird REST API at https://rest.messagebird.com.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- CRM
+- Messaging
+- SMS
+- WhatsApp
+- Email
+- Voice
+- Omnichannel
+- CPaaS
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: bird-com:bird-channels-messaging-api
+  name: Bird Channels / Messaging API
+  tags:
+  - Channels
+  - Messaging
+  - SMS
+  - WhatsApp
+  - Email
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.bird.com/api/channels-api
+  baseURL: https://api.bird.com
+  properties:
+  - url: https://docs.bird.com/api/channels-api
+    type: Documentation
+  - url: https://docs.bird.com/api/channels-api/api-reference/messaging
+    type: APIReference
+  - url: openapi/bird-com-openapi.yml
+    type: OpenAPI
+  - url: collections/bird-com.postman_collection.json
+    type: PostmanCollection
+  description: Send and receive messages across SMS, WhatsApp, email, and other channels
+    through a single unified workspace/channel interface, with channel management,
+    connectors, and presigned media uploads.
+- aid: bird-com:bird-contacts-api
+  name: Bird Contacts API
+  tags:
+  - Contacts
+  - CRM
+  - Lists
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.bird.com/api/contacts-api
+  baseURL: https://api.bird.com
+  properties:
+  - url: https://docs.bird.com/api/contacts-api
+    type: Documentation
+  - url: https://docs.bird.com/api/contacts-api/api-reference/manage-workspace-contacts
+    type: APIReference
+  - url: openapi/bird-com-openapi.yml
+    type: OpenAPI
+  - url: collections/bird-com.postman_collection.json
+    type: PostmanCollection
+  description: Manage contact records, identifiers, attributes, suppressions, and
+    lists within a workspace - the CRM data layer behind Bird's messaging channels.
+- aid: bird-com:bird-conversations-api
+  name: Bird Conversations API
+  tags:
+  - Conversations
+  - Omnichannel
+  - Inbox
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.bird.com/api/conversations-api
+  baseURL: https://api.bird.com
+  properties:
+  - url: https://docs.bird.com/api/quickstarts/conversations
+    type: Documentation
+  - url: https://docs.bird.com/api/conversations-api/api-reference/conversations-messaging/get-conversation-message
+    type: APIReference
+  - url: openapi/bird-com-openapi.yml
+    type: OpenAPI
+  - url: collections/bird-com.postman_collection.json
+    type: PostmanCollection
+  description: Create and manage threaded conversations that unify omnichannel
+    messaging into a centralized inbox, sending and retrieving messages scoped to
+    a conversation.
+- aid: bird-com:bird-numbers-api
+  name: Bird Numbers API
+  tags:
+  - Numbers
+  - Phone Numbers
+  - Lookup
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.bird.com/api/numbers-api
+  baseURL: https://api.bird.com
+  properties:
+  - url: https://docs.bird.com/api/numbers-api
+    type: Documentation
+  - url: https://docs.bird.com/api/numbers-api/api-reference/list-your-numbers
+    type: APIReference
+  - url: openapi/bird-com-openapi.yml
+    type: OpenAPI
+  - url: collections/bird-com.postman_collection.json
+    type: PostmanCollection
+  description: Discover, purchase, and manage long-code, short-code, and alphanumeric
+    sender phone numbers assigned to a workspace, plus network/country number lookup.
+- aid: bird-com:bird-legacy-messagebird-rest-api
+  name: Legacy MessageBird REST API
+  tags:
+  - Legacy
+  - MessageBird
+  - SMS
+  - Voice
+  - Verify
+  - Lookup
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.messagebird.com/api/
+  baseURL: https://rest.messagebird.com
+  properties:
+  - url: https://developers.messagebird.com/api/
+    type: Documentation
+  - url: https://developers.messagebird.com/api/sms-messaging/
+    type: APIReference
+  - url: openapi/bird-com-openapi.yml
+    type: OpenAPI
+  description: The predecessor MessageBird REST API at rest.messagebird.com covering
+    SMS messages, voice messaging, Verify (one-time passwords), and Lookup (HLR /
+    number validation), still documented for existing integrations.
+common:
+- type: GitHubOrganization
+  url: https://github.com/messagebird
+- type: LinkedIn
+  url: https://www.linkedin.com/company/bird
+- type: Website
+  url: https://bird.com/
+- type: Documentation
+  url: https://docs.bird.com/
+- type: Plans
+  url: plans/bird-com-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/bird-com-rate-limits.yml
+- type: FinOps
+  url: finops/bird-com-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

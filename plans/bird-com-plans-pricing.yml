@@ -1,0 +1,160 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bird
+providerId: bird-com
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- CRM
+- Messaging
+- SMS
+- WhatsApp
+- Email
+- Omnichannel
+- Plans
+description: >-
+  Bird (formerly MessageBird) combines a tiered platform subscription with
+  consumption-based per-message channel pricing. A free tier supports testing;
+  a Pro plan adds monthly credits; Bundle/Growth and Enterprise plans add
+  contact-based platform fees, included message volumes, and negotiated rates.
+  Per-message rates are country- and channel-dependent and many carry Meta /
+  carrier passthrough costs, so specific values are NOT reconciled here.
+notes: >-
+  Per-message and platform pricing varies by country, channel, message type
+  (promotional vs. transactional), and contract volume. Verify all rates on the
+  Bird pricing page during reconciliation; passthrough (carrier / Meta) costs
+  apply on top of listed per-message rates.
+sources:
+- https://bird.com/en-us/pricing
+- https://docs.bird.com/
+plans:
+- id: bird-free
+  name: Free
+  type: free
+  description: >-
+    Free tier to test the platform with a small daily message allowance.
+  entries:
+  - label: Test Allowance
+    name: test_allowance
+    type: free
+    metric: messages
+    limit: 5
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: Channels / Messaging
+  - name: Contacts
+  - name: Conversations
+- id: bird-pro
+  name: Pro
+  type: subscription
+  description: >-
+    Monthly subscription including channel message credits for scaling teams.
+  entries:
+  - label: Pro Subscription
+    name: pro_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $49 / month (includes message credits)
+    userMultiplied: false
+  elements:
+  - name: Channels / Messaging
+  - name: Contacts
+  - name: Conversations
+  - name: Numbers
+- id: bird-pay-as-you-go
+  name: Pay-as-you-go (per-channel)
+  type: usage
+  description: >-
+    Consumption-based per-message pricing across channels. Rates are country-
+    and channel-dependent; passthrough carrier / Meta fees apply on top.
+  entries:
+  - label: SMS (outbound)
+    name: sms_outbound
+    type: usage
+    metric: messages
+    limit: -1
+    timeFrame: month
+    geo: per-country
+    unit: 1
+    price: from ~$0.00331 per outbound US message (country-dependent)
+    userMultiplied: false
+  - label: WhatsApp
+    name: whatsapp
+    type: usage
+    metric: messages
+    limit: -1
+    timeFrame: month
+    geo: per-country
+    unit: 1
+    price: from ~$0.005 per message plus Meta passthrough
+    userMultiplied: false
+  - label: Email
+    name: email
+    type: usage
+    metric: emails
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: from ~$1.50 per 1,000 emails
+    userMultiplied: false
+  - label: RCS
+    name: rcs
+    type: usage
+    metric: messages
+    limit: -1
+    timeFrame: month
+    geo: per-country
+    unit: 1
+    price: from ~$0.005 per message plus passthrough
+    userMultiplied: false
+  - label: Push Notifications
+    name: push
+    type: usage
+    metric: notifications
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$0.0005 per notification
+    userMultiplied: false
+  elements:
+  - name: SMS
+  - name: WhatsApp
+  - name: Email
+  - name: RCS
+  - name: Push
+- id: bird-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Contact-based platform fees with included channel volumes, lower per-message
+    rates, custom limits, and premium support. Contact Bird sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Targeted Contacts
+  - name: Premium Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

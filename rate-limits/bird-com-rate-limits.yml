@@ -1,0 +1,72 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bird
+providerId: bird-com
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- CRM
+- Messaging
+- SMS
+- WhatsApp
+- Email
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Bird enforces per-account request throttling on its platform APIs at
+  api.bird.com, with additional per-channel throughput ceilings governed by
+  carriers, Meta (WhatsApp), and number capabilities. The legacy MessageBird
+  REST API at rest.messagebird.com documents explicit per-method limits
+  (approximately 50 GET req/s and 500 POST req/s, with up to 50 recipients per
+  message request). Platform per-account values are not fully reconciled here.
+notes: >-
+  Confirm current limits in the Bird documentation and workspace settings on
+  reconciliation. WhatsApp messaging throughput is additionally constrained by
+  Meta messaging tiers; SMS throughput depends on number type and carrier.
+sources:
+- https://docs.bird.com/
+- https://developers.messagebird.com/api/
+responseCodes:
+  throttled: 429
+limits:
+- name: Platform API Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account request throttling on api.bird.com endpoints.
+- name: Legacy GET Requests
+  scope: account
+  metric: requests
+  limit: ~50 req/s
+  notes: Documented for the legacy MessageBird REST API GET endpoints.
+- name: Legacy POST Requests
+  scope: account
+  metric: requests
+  limit: ~500 req/s
+  notes: Documented for the legacy MessageBird REST API POST endpoints.
+- name: Recipients Per Message
+  scope: request
+  metric: recipients
+  limit: 50
+  notes: Maximum recipients per legacy SMS message request.
+- name: WhatsApp Throughput
+  scope: channel
+  metric: messages
+  limit: governed by Meta messaging tier
+  notes: WhatsApp send throughput is set by Meta's per-number messaging tier, not Bird alone.
+- name: SMS Throughput
+  scope: channel
+  metric: messages
+  limit: depends on number type and carrier
+  notes: Long-code, short-code, and carrier capabilities determine per-second SMS throughput.
+policies:
+- name: Tiered Limits
+  description: Throughput rises with plan tier, number provisioning, and channel warm-up (WhatsApp).
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
