@@ -128,6 +128,14 @@ apis:
     SMS messages, voice messaging, Verify (one-time passwords), and Lookup (HLR /
     number validation), still documented for existing integrations.
 common:
+- type: TrustCenter
+  url: security/bird-com-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/bird-com-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/bird-com-domain-security.yml
+- type: Authentication
+  url: authentication/bird-com-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/messagebird
 - type: LinkedIn

@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bird-com-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: AccessKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: AccessKey token. Send as the Authorization header value "AccessKey {your-access-key}".
+  sources:
+  - openapi/bird-com-openapi.yml
